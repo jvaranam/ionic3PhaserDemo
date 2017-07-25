@@ -18,7 +18,7 @@ export class HomePage {
   }
 
   ionViewDidLoad(){
-  	this.phaserObj = new Phaser.Game(window.innerWidth, window.innerHeight, Phaser.AUTO, 'game0', { preload: this.preload.bind(this), create: this.create.bind(this), update: this.update.bind(this) });
+  	this.phaserObj = new Phaser.Game(window.innerWidth, window.innerHeight, Phaser.CANVAS, 'game0', { preload: this.preload.bind(this), create: this.create.bind(this), update: this.update.bind(this) });
   }
 
 
@@ -27,6 +27,7 @@ export class HomePage {
 	    this.phaserObj.load.image('ground', 'assets/icon/phaser/demo1/platform.png');
 	    this.phaserObj.load.image('star', 'assets/icon/phaser/demo1/star.png');
 	    this.phaserObj.load.spritesheet('dude', 'assets/icon/phaser/demo1/dude.png', 32, 48);
+
   	
 
     
@@ -70,8 +71,26 @@ export class HomePage {
  	//console.log("its me update");
 }
 
-generateImage(){
-	alert("generate image clicked");
+generateImage(_event){
+	
+	var dataURL = this.phaserObj.canvas.toDataURL(); 
+	var button:any;
+	button = document.getElementById('btn-download');
+	button.href = dataURL;
+	//image.download = 'test.png';
+
+	//var canvas = document.getElementById('game0');
+
+	//_event.href = document.getElementById('game0').toDataURL();
+	//_event.download = 'test.png';
+	button.download ="my-file-name.png"
+	//debugger;
+	//
+	//var dt = canvas.toDataURL('image/png');
+
+	//var image = new Image();
+	/*image.src = .toDataURL();
+    image.download = 'test.png';*/
 }
 
 }
